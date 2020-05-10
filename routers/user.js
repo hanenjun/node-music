@@ -1,0 +1,12 @@
+const Router = require('koa-router')
+let userRouter = new Router()
+let userController = require('../controllers/user')
+// .get('/user/login',)
+userRouter.get('/user/register',userController.showRegister)
+.post('/user/check-username',userController.checkUsername)
+.post('/user/do-register',userController.doRegister)
+.get('/user/login',userController.showLogin)
+.get('/user/get-pic',userController.getPic)
+.post('/user/do-login',userController.doLogin)
+.get('/user/logout',userController.userLogout)
+module.exports = userRouter

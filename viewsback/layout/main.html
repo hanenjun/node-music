@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>我的音乐</title>
+    {{include '../particals/linker.html'}}
+     <style type="text/css">
+    #box {
+        background-color: rgba(0, 0, 0, 0.2);
+        width: 300px;
+        height: 360px;
+        margin-top: 10px;
+        overflow: hidden;
+        padding: 0;
+    }
+
+    #box p {
+        padding: 0 15px;
+    }
+
+    #lrc {
+        margin-top: 130px;
+        position: absolute;
+        text-align: center;
+        padding-top: 60px;
+    }
+
+    .gl {
+        color: hotpink;
+        background-color: red;
+    }
+    </style>
+</head>
+
+<body>
+    {{include '../particals/header.html'}}
+    {{block 'content'}}
+    {{/block}}
+    {{include '../particals/footer.html'}}
