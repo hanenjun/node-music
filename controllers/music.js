@@ -7,7 +7,7 @@ function optUpload(ctx){
         title,singer,time
     }
     if(filelrc){
-        saveSingObj.filelrc = ('/public/files' + path.parse(filelrc.path).base)
+        saveSingObj.filelrc = ('/public/files/' + path.parse(filelrc.path).base)
     }else{
         saveSingObj.filelrc = 'no file'
     }
@@ -15,8 +15,8 @@ function optUpload(ctx){
         ctx.throw('需要上传歌曲文件')
         return
     }
-    saveSingObj.file = ('/public/files' + path.parse(file.path).base)
-    saveSingObj.uid = 'a'
+    saveSingObj.file = ('/public/files/' + path.parse(file.path).base)
+    saveSingObj.uid = 1
     return saveSingObj
 }
 module.exports = {

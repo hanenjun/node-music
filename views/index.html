@@ -24,7 +24,7 @@
 
     .gl {
         color: hotpink;
-        background-color: red;
+        /* background-color: red; */
     }
     </style>
 
@@ -72,6 +72,61 @@
                     </div>
                 </div>
             </div>
+            <script>
+                function parseLrc(data){
+                   var str =  data.split('\n')
+                   var regex = /\[(\d{2})\:(\d{2})\.(\d{2})\](.*)/
+                   var tempObj = {}
+                   for(var i =0; i<str.length;i++){
+                    var line = str[i]
+                    var result = regex.exec(line)
+                   if(!result) continue;
+                        var fen = result[1]
+                        var miao = result[2]
+                        var con = result[4]
+                       
+                        var key = (fen * 60) + (miao - 0) 
+                        tempObj[key] = con
+                   }
+                   return tempObj
+                }
+                function createDom(data){
+                    var html = ''
+                    for(time in data){
+                        html += '<p time='+time+'>'+ data[time] +'</p>'
+                    }
+                    return html
+                }
+                function scroll(data){
+                    $('#audio').on('timeupdate',function(e){
+                        // console.log(e.target.currentTime)
+                        var miao = Math.round(e.target.currentTime)
+                        if(!data[miao]) return;
+
+                        var p = $('#lrc').find('p[time='+miao+']')
+                        var minus = $('#lrc').offset().top - p.offset().top
+                        $('#lrc').animate({
+                            top:minus
+                        },'slow')
+                        p.addClass('gl').siblings().removeClass('gl')
+                    })
+                }
+                $('.ply').on('click',function(){
+                    var file = $(this).attr('file')
+                    var filelrc = $(this).attr('filelrc')
+                    $('#audio').attr('src',file)
+                    $.ajax({
+                        url:filelrc,
+                        type:'get',
+                        success:function(data){
+                            var lrcObj = parseLrc(data)
+                           var html  = createDom(lrcObj)
+                            $('#lrc').html(html)
+                            scroll(lrcObj)
+                        }
+                    })
+                })
+            </script>
         </div>
     </div>
 {{/block}}
