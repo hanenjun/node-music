@@ -5,6 +5,6 @@ musicRouter.get('/music/index',musicControllers.showIndex)
 .get('/music/add-music',musicControllers.showAddMusic)
 .get('/music/edit-music',musicControllers.showEdit)
 .post('/music/add-music',musicControllers.addMusic)
-.put('/music/update-music',musicControllers.updateMusic)
-.delete('/music/del-music',musicControllers.deleteMusic)
+.post('/music/update-music',musicControllers.updateMusic)
+.get('/music/del-music',musicControllers.deleteMusic)
 module.exports = musicRouter

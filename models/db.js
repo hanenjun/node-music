@@ -13,7 +13,7 @@ db.q = function (sql,params) {
         return;
       }
       connection.query(sql,params, function (error, results, fields) {
-            console.log(`${sql}=>${params}`);
+            // console.log(`${sql}=>${params}`);
              // 释放连接
             connection.release();
             if(error) {

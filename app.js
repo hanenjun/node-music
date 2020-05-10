@@ -55,16 +55,23 @@ app.use(async(ctx,next)=>{
     ctx.state.user = ctx.session.user
     await next()
 })
-// app.use(async (ctx,next)=>{
-//     if(!ctx.session.user){
-//         ctx.render('login')
-//         // await next()
-//     }
-//     if(ctx.session.user){
-//         await next()
-//     }
-// })
 app.use(static(staticDir))
+
+app.use(async (ctx,next)=>{
+    if(ctx.request.url.startsWith('/user')){
+        await next()
+        return
+    }
+    if(ctx.request.url.startsWith('/music')){
+        if(!ctx.session.user){
+            ctx.url = '/user/login'
+        await next()
+        return
+        }
+        await next()
+    }
+})
+
 app.use(userRouter.routes())
 app.use(musicRouter.routes())
 

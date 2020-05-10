@@ -3,8 +3,8 @@ module.exports = (options)=>{
         try {
             await next()
         } catch (error) {
-            let msg = error.message
-            ctx.render('error',{msg})
+            
+            // ctx.render('error',{msg})
         }
     }
 }

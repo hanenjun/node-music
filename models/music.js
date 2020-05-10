@@ -16,5 +16,11 @@ module.exports = {
     },
     async findMusicByUid(uid){
         return  await db.q('select * from musics where uid = ?',[uid])
+    },
+    async findFile(id){
+        return  await db.q('select file from musics where id = ?',[id])
+    },
+    async findFileLrc(id){
+        return  await db.q('select filelrc from musics where id = ?',[id])
     }
 }

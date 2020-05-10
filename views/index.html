@@ -32,7 +32,7 @@
         <div class="page-header">
             <h1>首页--<small>我的音乐</small></h1>
         </div>
-        <a href="/addMusic" class="btn btn-success">添加音乐</a>
+        <a href="/music/add-music" class="btn btn-success">添加音乐</a>
     </div>
     <div class="container">
        <div class="row" style="display: flex;">
@@ -50,10 +50,10 @@
                         {{each musics}}         
                             <tr>
                             <td>{{$value.title}}</td>
-                            <td>{{$value.singer}}</td>
                             <td>{{$value.time}}</td>
+                            <td>{{$value.singer}}</td>
                             <td><a href="/music/edit-music?id={{$value.id}}">编辑</a></td>
-                            <td><a class="del" href="/music/del-music?id={{$value.id}}">删除</a></td>
+                            <td><a class="del" href="" id="del"  bj="{{$value.id}}">删除</a></td>
                             <td><span style="cursor:pointer" src="" class="glyphicon glyphicon-play-circle ply"
                             file="{{$value.file}}"
                             filelrc="{{$value.filelrc}}"
@@ -73,6 +73,19 @@
                 </div>
             </div>
             <script>
+                $('#del').on('click',function(e){
+                    e.preventDefault()
+                    $.ajax({
+                        type:'get',
+                        url:'/music/del-music',
+                        data:{
+                            id:$(this).attr('bj')
+                        },
+                        success:function(){
+                            window.location = '/music/index'
+                        }
+                    })
+                })
                 function parseLrc(data){
                    var str =  data.split('\n')
                    var regex = /\[(\d{2})\:(\d{2})\.(\d{2})\](.*)/
