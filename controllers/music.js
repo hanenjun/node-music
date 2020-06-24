@@ -25,7 +25,7 @@ async function optUpload(ctx, id) {
         }
          else {
             let geci = await musicModel.findFileLrc(id)
-            console.log(geci[0].filelrc)
+            // console.log(geci[0].filelrc)
             if (geci) {
                 saveSingObj.filelrc = geci[0].filelrc
             } else {
@@ -43,7 +43,7 @@ async function optUpload(ctx, id) {
         } 
         else {
             let wenjian = await musicModel.findFile(id)
-            console.log(wenjian[0].file)
+            // console.log(wenjian[0].file)
             if (wenjian) {
                 saveSingObj.file = wenjian[0].file
             } else {
@@ -57,8 +57,12 @@ async function optUpload(ctx, id) {
 module.exports = {
     async addMusic(ctx, next) {
         let saveSingObj = await optUpload(ctx, 'tj')
-        console.log(saveSingObj)
+        // console.log(saveSingObj)
+        console.log('1')
         let result = await musicModel.addMusicByObj(saveSingObj)
+        console.log('1')
+
+        console.log(1)
         if (result.affectedRows != 0) {
             ctx.body = {
                 code: 001,

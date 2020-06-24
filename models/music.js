@@ -2,6 +2,7 @@ const db  = require('../models/db')
 module.exports = {
     async addMusicByObj(saveSingObj){
         let data = Object.values(saveSingObj)
+        console.log(data)
        return await db.q('insert into musics (title,singer,time,filelrc,file,uid) values (?,?,?,?,?,?)',data)
     },
     async updateMusic(saveSingObj){
