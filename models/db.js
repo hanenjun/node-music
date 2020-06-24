@@ -3,7 +3,7 @@ const { dbConfig } = require('../config.js');
 var pool  = mysql.createPool(dbConfig);
  
 var db = {};
-
+  
 db.q = function (sql,params) {
   return new Promise((resolve,reject)=>{
     // 取出链接

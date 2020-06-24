@@ -1,6 +1,6 @@
 const userModel = require('../models/user')
 const captchapng2 = require('captchapng2')
-module.exports = {
+module.exports = {  
     showRegister: async (ctx, next) => {
         // let users = await userModel.getUsers();
         // console.log(users);
